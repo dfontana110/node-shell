@@ -1,15 +1,20 @@
+const pwd = require('./pwd.js');
+const ls = require('./ls');
+
 process.stdout.write('prompt > ');
 
-process.stdin.on('data', (data) => {
+process.stdin.on('data', data => {
   const cmd = data.toString().trim(); // remove the newline
-  
-  switch(cmd){
+
+  switch (cmd) {
     case 'pwd':
-      process.stdout.write(process.cwd());
+      pwd();
+      break;
+    case 'ls':
+      ls();
       break;
     default:
-      process.stderr.write(`ERROR: cannot handle command ${cmd}`); 
+      process.stderr.write(`ERROR: cannot handle command ${cmd}`);
   }
   process.stdout.write('\nprompt > ');
-
 });
